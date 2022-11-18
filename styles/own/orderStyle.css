@@ -1,0 +1,38 @@
+body {
+  padding: 0 3.2rem;
+}
+
+/****************/
+/* ORDER CARD */
+/****************/
+
+.order {
+  position: relative;
+  border: 1px solid #2d2d2d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+  height: auto;
+  box-shadow: 0 3.2rem 6.4rem rgba(0, 0, 0, 0.06);
+  border-radius: 11px;
+  background-color: #fdf2e9;
+}
+
+/****************************/
+/* BREADCRUMB NAVIGATION */
+/****************************/
+
+.breadcrumb {
+  font-size: 1.4rem;
+  padding: 10px 16px;
+  list-style: none;
+}
+
+.breadcrumb-item {
+  display: inline;
+}
+
+.active {
+  font-weight: 200;
+}
