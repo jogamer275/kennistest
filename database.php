@@ -1,7 +1,10 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "bestellingen");
-
-// Check connection
-if ($conn === false) {
-  die("ERROR: Could not connect. " . mysqli_connect_error());
-}
+$conn = new Medoo\Medoo([
+    // required
+    'database_type' => 'mysql',
+    'database_name' => 'bestellingen',
+    'server' => 'localhost',
+    'username' => 'root',
+    'password' => '',
+    'charset' => 'utf8'
+]);

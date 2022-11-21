@@ -1,3 +1,6 @@
+<?php
+require __DIR__ . '/vendor/autoload.php';
+?>
 <!doctype html>
 <html lang="en">
 
@@ -36,9 +39,16 @@
       dolor purus.</p>
     <?php
     // Query uitvoeren
-    $sql = "SELECT * FROM orders";
-    if ($result = mysqli_query($conn, $sql)) {
-      if (mysqli_num_rows($result) > 0) {
+    $orders = $conn->select('orders', [
+        'id',
+        'name',
+        'email',
+        'status',
+        'created',
+    ]);
+
+
+    if ($orders) {
         echo "<table id='myTable'>";
         echo "<tr>";
         echo "<th>id</th>";
@@ -47,7 +57,7 @@
         echo "<th>besteldatum</th>";
         echo "<th>bekijk order</th>";
         echo "</tr>";
-        while ($row = mysqli_fetch_array($result)) {
+        foreach ($orders AS $row){
           echo "<tr>";
           echo "<td>" . $row['id'] . "</td>";
           echo "<td>" . $row['name'] . "</td>";
@@ -57,13 +67,9 @@
           echo "</tr>";
         }
         echo "</table>";
-        mysqli_free_result($result);
-      } else {
+    } else {
         echo "No records are found";
-      }
     }
-    // Close connection
-    mysqli_close($conn);
     ?>
   </main>
 
