@@ -1,5 +1,9 @@
 <?php
-$conn = new Medoo\Medoo([
+
+use Medoo\Medoo;
+
+
+$conn = new Medoo([
     // required
     'database_type' => 'mysql',
     'database_name' => 'bestellingen',

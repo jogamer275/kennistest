@@ -13,65 +13,82 @@ require __DIR__ . '/vendor/autoload.php';
   <link rel="stylesheet" href="styles/own/ownStyle.css" />
   <link rel="stylesheet" href="styles/style.css" />
 
-  <script defer src="js/script.js"></script>
   <?php include 'database.php'; ?>
 
-  <title>Bootstrap demo</title>
+  <title>Kennistest</title>
 </head>
 
 <body>
-  <nav class="navbar">
-    <ul class="navbar-list">
-      <li><a class="navbar-link" href="#">link 1</a></li>
-      <li><a class="navbar-link" href="#">link 2</a></li>
-      <li><a class="navbar-link" href="#">link 3</a></li>
-    </ul>
+  <nav class="navbar navbar-expand-lg bg-light fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Link 1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link 2</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link 3</a>
+        </li>
+    </div>
   </nav>
 
-  <main>
-    <h1>Kennistest</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-      aliqua. A cras semper auctor neque vitae tempus quam pellentesque nec. Sapien et ligula ullamcorper malesuada proin
-      libero nunc. Risus in hendrerit gravida rutrum quisque non tellus. Elit ut aliquam purus sit amet luctus venenatis
-      lectus magna. Non sodales neque sodales ut. Vel eros donec ac odio tempor. Erat nam at lectus urna duis convallis
-      convallis. Eget egestas purus viverra accumsan in nisl. Consectetur a erat nam at lectus urna duis convallis
-      convallis. Consectetur adipiscing elit pellentesque habitant morbi tristique. Magna fringilla urna porttitor rhoncus
-      dolor purus.</p>
-    <?php
-    // Query uitvoeren
-    $orders = $conn->select('orders', [
-        'id',
-        'name',
-        'email',
-        'status',
-        'created',
-    ]);
+  <div class="container text-center">
+    <div class="row">
+      <div class="col">
+        <main>
+          <h1>Kennistest</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+            aliqua. A cras semper auctor neque vitae tempus quam pellentesque nec. Sapien et ligula ullamcorper malesuada proin
+            libero nunc. Risus in hendrerit gravida rutrum quisque non tellus. Elit ut aliquam purus sit amet luctus venenatis
+            lectus magna. Non sodales neque sodales ut. Vel eros donec ac odio tempor. Erat nam at lectus urna duis convallis
+            convallis. Eget egestas purus viverra accumsan in nisl. Consectetur a erat nam at lectus urna duis convallis
+            convallis. Consectetur adipiscing elit pellentesque habitant morbi tristique. Magna fringilla urna porttitor rhoncus
+            dolor purus.</p>
+          <?php
+          // Query uitvoeren
+          $orders = $conn->select('orders', [
+            'id',
+            'name',
+            'email',
+            'status',
+            'created',
+          ]);
 
 
-    if ($orders) {
-        echo "<table id='myTable'>";
-        echo "<tr>";
-        echo "<th>id</th>";
-        echo "<th>name</th>";
-        echo "<th>status</th>";
-        echo "<th>besteldatum</th>";
-        echo "<th>bekijk order</th>";
-        echo "</tr>";
-        foreach ($orders AS $row){
-          echo "<tr>";
-          echo "<td>" . $row['id'] . "</td>";
-          echo "<td>" . $row['name'] . "</td>";
-          echo "<td>" . $row['status'] . "</td>";
-          echo "<td>" . $row['created'] . "</td>";
-          echo "<td><button onclick='openResultPage(event)' type='button' class='btn btn-primary'>Orderinfo</button></td>";
-          echo "</tr>";
-        }
-        echo "</table>";
-    } else {
-        echo "No records are found";
-    }
-    ?>
-  </main>
+          if ($orders) {
+            echo "<table class='table table-hover'>";
+            echo "<thead>";
+            echo "<tr>";
+            echo "<th scope='col'>id</th>";
+            echo "<th scope='col'>name</th>";
+            echo "<th scope='col'>status</th>";
+            echo "<th scope='col'>besteldatum</th>";
+            echo "<th scope='col'>bekijk order</th>";
+            echo "</tr>";
+            echo "</thead>";
+            foreach ($orders as $row) {
+              echo "<tbody>";
+              echo "<tr>";
+              echo "<th scope='row'>" . $row['id'] . "</th>";
+              echo "<td>" . $row['name'] . "</td>";
+              echo "<td>" . $row['status'] . "</td>";
+              echo "<td>" . $row['created'] . "</td>";
+              echo "<td><a href='detail.php?order_id=" . $row['id'] . "' class='btn btn-primary'>Orderinfo</a></td>";
+              echo "</tr>";
+              echo "</tbody>";
+            }
+            echo "</table>";
+          } else {
+            echo "No records are found";
+          }
+          ?>
+        </main>
+      </div>
+    </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
   </script>
